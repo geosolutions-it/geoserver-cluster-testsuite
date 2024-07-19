@@ -64,3 +64,16 @@ docker compose -f docker-compose-jdbcconfig.yml up --build --force-recreate
 
 ## GeoServer Cloud
 
+Can be run into two different modalities:
+
+### Shared Data Dir
+
+```bash
+docker compose -f docker-compose-cloud-shared_datadir.yml up --build --force-recreate
+```
+
+### JDBC Config
+
+```bash
+docker compose -f docker-compose-cloud-jdbcconfig.yml up --build --force-recreate
+```
