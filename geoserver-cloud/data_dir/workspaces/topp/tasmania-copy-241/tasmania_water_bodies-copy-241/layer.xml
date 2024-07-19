@@ -1,0 +1,17 @@
+<layer>
+  <name>tasmania_water_bodies-copy-241</name>
+  <id>LayerInfo-01J3349VM8X28XKKT7ZCQVBSGR</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--2e943405:190bfb90dd9:-7ffe</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfo-01J3349VBTYHSA9FQZ184TV31X</id>
+  </resource>
+  <queryable>true</queryable>
+  <opaque>false</opaque>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

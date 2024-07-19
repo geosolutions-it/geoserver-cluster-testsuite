@@ -1,0 +1,17 @@
+<layer>
+  <name>tasmania_roads-copy-210</name>
+  <id>LayerInfo-01J3347XZVV3RW4VQHQKE3SKB2</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--2e943405:190bfb90dd9:-7fff</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfo-01J3347XP7BNEPHFCBH7B3MZQ5</id>
+  </resource>
+  <queryable>true</queryable>
+  <opaque>false</opaque>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

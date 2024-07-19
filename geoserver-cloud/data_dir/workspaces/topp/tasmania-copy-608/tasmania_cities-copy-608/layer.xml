@@ -1,0 +1,17 @@
+<layer>
+  <name>tasmania_cities-copy-608</name>
+  <id>LayerInfo-01J334Z82V8GY9PS7YTESJEGPA</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--2e943405:190bfb90dd9:-8000</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfo-01J334Z7T74GFH3HG4F8NACY55</id>
+  </resource>
+  <queryable>true</queryable>
+  <opaque>false</opaque>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

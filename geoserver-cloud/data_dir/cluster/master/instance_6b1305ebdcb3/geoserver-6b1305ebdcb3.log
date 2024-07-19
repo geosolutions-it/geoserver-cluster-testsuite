@@ -1,0 +1,448 @@
+CONFIG 2024-07-17 08:04:49,402 [main][Log4J2Logger.java:215] : Logging policy: Log4J2
+CONFIG 2024-07-17 08:04:49,588 [main][Log4J2Logger.java:189] : Factory implementations for category GridCoverageFactory:
+  org.geotools.coverage.grid.GridCoverageFactory
+CONFIG 2024-07-17 08:04:50,505 [main][Log4J2Logger.java:189] : Factory implementations for category FilterFactory:
+  org.geotools.filter.FilterFactoryImpl
+CONFIG 2024-07-17 08:04:50,536 [main][Log4J2Logger.java:189] : Factory implementations for category StyleFactory:
+  org.geotools.styling.StyleFactoryImpl
+CONFIG 2024-07-17 08:04:50,543 [main][Log4J2Logger.java:189] : Factory implementations for category FeatureFactory:
+  org.geotools.feature.LenientFeatureFactoryImpl
+  org.geotools.feature.ValidatingFeatureFactoryImpl
+DEBUG 2024-07-17 08:04:50,920 [main][Log4J2Logger.java:220] : Extension lookup 'XStreamPersisterInitializer', prior to bean geoserverExtensions initialisation.
+DEBUG 2024-07-17 08:04:50,921 [main][Log4J2Logger.java:220] : Extension lookup 'ExtensionFilter', prior to bean geoserverExtensions initialisation.
+DEBUG 2024-07-17 08:04:50,924 [main][Log4J2Logger.java:220] : Extension lookup 'ExtensionProvider', but provided ApplicationContext is unset.
+DEBUG 2024-07-17 08:04:50,924 [main][Log4J2Logger.java:220] : Extension lookup 'ExtensionFilter', but provided ApplicationContext is unset.
+DEBUG 2024-07-17 08:04:50,944 [main][Log4J2Logger.java:220] : CONFIGURING GEOSERVER LOGGING -------------------------
+17 Jul 08:04:51 CONFIG [geoserver.logging] - Log4j 2 configuration set to DEFAULT_LOGGING.xml
+17 Jul 08:04:54 CONFIG [org.geoserver] - GeoServer configuration lock is enabled
+17 Jul 08:04:54 CONFIG [org.geoserver] - Loading catalog /opt/geoserver/data_dir
+17 Jul 08:04:54 WARN   [org.geoserver] - No 'workspaces' directory found, unable to load any stores.
+17 Jul 08:04:54 CONFIG [org.geoserver] - Read catalog in 8.588 ms
+17 Jul 08:04:55 CONFIG [org.geoserver] - Loaded service 'WFSInfoImpl--2e943405:190bfb90dd9:-7ffb', enabled
+17 Jul 08:04:55 CONFIG [org.geoserver] - Loaded service 'WCSInfoImpl--2e943405:190bfb90dd9:-7ffa', enabled
+17 Jul 08:04:55 CONFIG [org.geoserver] - Loaded service 'WMTSInfoImpl--2e943405:190bfb90dd9:-7ff9', enabled
+17 Jul 08:04:55 CONFIG [org.geoserver] - Loaded service 'WMSInfoImpl--2e943405:190bfb90dd9:-7ff8', enabled
+17 Jul 08:04:55 CONFIG [org.geoserver] - Loaded service 'csw', enabled
+17 Jul 08:04:55 CONFIG [org.geoserver] - Loaded service 'WPSInfoImpl--2e943405:190bfb90dd9:-7ff7', enabled
+17 Jul 08:04:55 CONFIG [gwc.config] - Will look for 'geowebcache.xml' in directory '/opt/geoserver/gwc'.
+17 Jul 08:04:55 CONFIG [gwc.config] - Create configuration file '/opt/geoserver/gwc/geowebcache.xml' from template jar:file:/usr/local/tomcat/webapps/geoserver/WEB-INF/lib/gwc-core-1.25.2.jar!/geowebcache_empty.xml
+17 Jul 08:04:55 WARN   [config.XMLConfiguration] - GWC configuration validation error: cvc-elt.1.a: Cannot find the declaration of element 'gwcConfiguration'.
+17 Jul 08:04:55 WARN   [config.XMLConfiguration] - Will try to use configuration anyway. Please check the order of declared elements against the schema.
+17 Jul 08:04:55 CONFIG [config.XMLConfiguration] - Initializing GridSets from /opt/geoserver/gwc
+17 Jul 08:04:55 CONFIG [config.XMLConfiguration] - Initializing layers from /opt/geoserver/gwc
+17 Jul 08:04:55 CONFIG [gwc.layer] - Initializing GWC configuration based on GeoServer's Catalog
+17 Jul 08:04:55 CONFIG [gwc.layer] - GeoServer TileLayer store base directory is: gwc-layers
+17 Jul 08:04:55 CONFIG [gwc.layer] - Loading tile layers from gwc-layers
+17 Jul 08:04:55 CONFIG [gwc.layer] - Loaded 0 tile layers in 3.703 ms
+17 Jul 08:04:55 CONFIG [storage.BlobStoreAggregator] - BlobStoreConfiguration /opt/geoserver/gwc contained no blob store infos.
+17 Jul 08:04:55 CONFIG [storage.DefaultStorageFinder] - Found system environment variableGEOWEBCACHE_CACHE_DIR set to /opt/geoserver/gwc, using it as the default prefix.
+17 Jul 08:04:55 CONFIG [gwc.config] - Initializing GeoServer specific GWC configuration from gwc-gs.xml
+17 Jul 08:04:56 INFO   [flow.config] - Loaded control-flow rule: ows.global=100
+17 Jul 08:04:56 INFO   [flow.config] - Loaded control-flow rule: ows.wms.getmap=10
+17 Jul 08:04:56 INFO   [flow.config] - Loaded control-flow rule: ows.wfs.getfeature.application/msexcel=4
+17 Jul 08:04:56 INFO   [flow.config] - Loaded control-flow rule: user=6
+17 Jul 08:04:56 INFO   [flow.config] - Loaded control-flow rule: ows.gwc=16
+17 Jul 08:04:56 INFO   [flow.config] - Loaded control-flow rule: user.ows.wps.execute=1000/d;30s
+17 Jul 08:04:56 CONFIG [geoserver.flow] - Control-flow active with 6 flow controllers
+17 Jul 08:04:57 CONFIG [gwc.config] - Will look for 'geowebcache-diskquota.xml' in directory '/opt/geoserver/gwc'.
+17 Jul 08:04:57 CONFIG [gwc.config] - Will look for 'geowebcache-diskquota-jdbc.xml' in directory '/opt/geoserver/gwc'.
+17 Jul 08:04:57 CONFIG [diskquota.ConfigLoader] - Quota config is: /opt/geoserver/gwc/geowebcache-diskquota.xml
+17 Jul 08:04:57 CONFIG [diskquota.ConfigLoader] - Quota config is: /opt/geoserver/gwc/geowebcache-diskquota.xml
+17 Jul 08:05:02 WARN   [gce.imagemosaic] - Unable to set ordering between tiff readers spi
+17 Jul 08:05:02 CONFIG [geowebcache.GeoWebCacheDispatcher] - Invoked setServletPrefix(gwc)
+17 Jul 08:05:02 CONFIG [wms.WMSService] - Will NOT recombine tiles for non-tiling clients.
+17 Jul 08:05:02 CONFIG [wms.WMSService] - Will proxy requests to backend that are not getmap or getcapabilities.
+17 Jul 08:05:04 WARN   [turbojpeg.TurboJPEGMapResponse] - The turbo jpeg encoder is available for usage
+17 Jul 08:05:10 INFO   [geoserver.monitor] - Monitor extension enabled
+17 Jul 08:05:10 INFO   [cluster.impl] - Using brokerURI: failover:()
+17 Jul 08:05:10 CONFIG [geoserver.wps] - Found 5 bindable processes in GeoServer specific processes
+17 Jul 08:05:10 CONFIG [geoserver.wps] - Found 89 bindable processes in Deprecated processes
+17 Jul 08:05:10 CONFIG [geoserver.wps] - Blacklisting process vec:GroupCandidateSelection as the input groupingAttributes of type class java.lang.Object cannot be handled
+17 Jul 08:05:10 CONFIG [geoserver.wps] - Found 31 bindable processes in Vector processes
+17 Jul 08:05:10 CONFIG [geoserver.wps] - Blacklisting process ras:ConvolveCoverage as the input kernel of type class javax.media.jai.KernelJAI cannot be handled
+17 Jul 08:05:10 CONFIG [geoserver.wps] - Blacklisting process ras:RasterZonalStatistics2 as the input zones of type class java.lang.Object cannot be handled
+17 Jul 08:05:10 CONFIG [geoserver.wps] - Blacklisting process ras:RasterZonalStatistics2 as the input nodata of type class it.geosolutions.jaiext.range.Range cannot be handled
+17 Jul 08:05:10 CONFIG [geoserver.wps] - Blacklisting process ras:RasterZonalStatistics2 as the input rangeData of type class java.lang.Object cannot be handled
+17 Jul 08:05:10 CONFIG [geoserver.wps] - Blacklisting process ras:RasterZonalStatistics2 as the output zonal statistics of type interface java.util.List cannot be handled
+17 Jul 08:05:10 CONFIG [geoserver.wps] - Found 18 bindable processes in Raster processes
+17 Jul 08:05:10 CONFIG [geoserver.wps] - Found 48 bindable processes in Geometry processes
+17 Jul 08:05:10 CONFIG [geoserver.wps] - Found 1 bindable processes in PolygonLabelProcess
+17 Jul 08:05:10 CONFIG [geoserver.wps] - Found 1 bindable processes in geo
+17 Jul 08:05:10 CONFIG [geoserver.wps] - Found 1 bindable processes in geo
+17 Jul 08:05:11 CONFIG [diskquota.ConfigLoader] - Quota config is: /opt/geoserver/gwc/geowebcache-diskquota.xml
+17 Jul 08:05:11 CONFIG [diskquota.DiskQuotaMonitor] - Setting up disk quota periodic enforcement task
+17 Jul 08:05:11 CONFIG [diskquota.DiskQuotaMonitor] - 0 layers configured with their own quotas. 
+17 Jul 08:05:11 CONFIG [diskquota.DiskQuotaMonitor] - 0 layers attached to global quota 20.0 GB
+17 Jul 08:05:11 CONFIG [diskquota.DiskQuotaMonitor] - Disk quota periodic enforcement task set up every 5 SECONDS
+17 Jul 08:05:12 INFO   [cluster.impl] - Starting the embedded brokerURI
+17 Jul 08:05:13 ERROR  [broker.BrokerService] - Failed to start Apache ActiveMQ (6b1305ebdcb3, ID:6b1305ebdcb3-36443-1721203513056-0:1)
+java.io.IOException: Transport not scheme specified: [?maximumConnections=1000&wireFormat.maxFrameSize=104857600&jms.useAsyncSend=true&transport.daemon=true&trace=true]
+	at org.apache.activemq.transport.TransportFactory.findTransportFactory(TransportFactory.java:176)
+	at org.apache.activemq.transport.TransportFactorySupport.bind(TransportFactorySupport.java:32)
+	at org.apache.activemq.broker.TransportConnector.createTransportServer(TransportConnector.java:334)
+	at org.apache.activemq.broker.TransportConnector.getServer(TransportConnector.java:143)
+	at org.apache.activemq.broker.TransportConnector.start(TransportConnector.java:210)
+	at org.apache.activemq.broker.BrokerService.startTransportConnector(BrokerService.java:2760)
+	at org.apache.activemq.broker.BrokerService.startAllConnectors(BrokerService.java:2653)
+	at org.apache.activemq.broker.BrokerService.doStartBroker(BrokerService.java:777)
+	at org.apache.activemq.broker.BrokerService.startBroker(BrokerService.java:739)
+	at org.apache.activemq.broker.BrokerService.start(BrokerService.java:642)
+	at org.geoserver.cluster.impl.JMSActiveMQFactory.startEmbeddedBroker(JMSActiveMQFactory.java:227)
+	at org.geoserver.cluster.impl.JMSActiveMQFactory.init(JMSActiveMQFactory.java:309)
+	at org.geoserver.cluster.impl.JMSActiveMQFactory.onApplicationEvent(JMSActiveMQFactory.java:350)
+	at org.geoserver.cluster.impl.JMSActiveMQFactory.onApplicationEvent(JMSActiveMQFactory.java:34)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:178)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:171)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:145)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:430)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:387)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:952)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:594)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:399)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:278)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:103)
+	at org.geoserver.platform.GeoServerContextLoaderListener.contextInitialized(GeoServerContextLoaderListener.java:22)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4007)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4448)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:599)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:571)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:603)
+	at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1175)
+	at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1888)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:118)
+	at org.apache.catalina.startup.HostConfig.deployDirectories(HostConfig.java:1086)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:470)
+	at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1584)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:312)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:109)
+	at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:385)
+	at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:332)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:776)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:721)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:211)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:415)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:878)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.startup.Catalina.start(Catalina.java:735)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:345)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:473)
+17 Jul 08:05:13 CONFIG [gwc.layer] - GeoServer TileLayer store base directory is: gwc-layers
+17 Jul 08:05:13 CONFIG [gwc.layer] - Loading tile layers from gwc-layers
+17 Jul 08:05:13 CONFIG [gwc.layer] - Loaded 0 tile layers in 833.7 μs
+17 Jul 08:05:13 ERROR  [cluster.impl] - Transport not scheme specified: [?maximumConnections=1000&wireFormat.maxFrameSize=104857600&jms.useAsyncSend=true&transport.daemon=true&trace=true]
+java.io.IOException: Transport not scheme specified: [?maximumConnections=1000&wireFormat.maxFrameSize=104857600&jms.useAsyncSend=true&transport.daemon=true&trace=true]
+	at org.apache.activemq.transport.TransportFactory.findTransportFactory(TransportFactory.java:176)
+	at org.apache.activemq.transport.TransportFactorySupport.bind(TransportFactorySupport.java:32)
+	at org.apache.activemq.broker.TransportConnector.createTransportServer(TransportConnector.java:334)
+	at org.apache.activemq.broker.TransportConnector.getServer(TransportConnector.java:143)
+	at org.apache.activemq.broker.TransportConnector.start(TransportConnector.java:210)
+	at org.apache.activemq.broker.BrokerService.startTransportConnector(BrokerService.java:2760)
+	at org.apache.activemq.broker.BrokerService.startAllConnectors(BrokerService.java:2653)
+	at org.apache.activemq.broker.BrokerService.doStartBroker(BrokerService.java:777)
+	at org.apache.activemq.broker.BrokerService.startBroker(BrokerService.java:739)
+	at org.apache.activemq.broker.BrokerService.start(BrokerService.java:642)
+	at org.geoserver.cluster.impl.JMSActiveMQFactory.startEmbeddedBroker(JMSActiveMQFactory.java:227)
+	at org.geoserver.cluster.impl.JMSActiveMQFactory.init(JMSActiveMQFactory.java:309)
+	at org.geoserver.cluster.impl.JMSActiveMQFactory.onApplicationEvent(JMSActiveMQFactory.java:350)
+	at org.geoserver.cluster.impl.JMSActiveMQFactory.onApplicationEvent(JMSActiveMQFactory.java:34)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:178)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:171)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:145)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:430)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:387)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:952)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:594)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:399)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:278)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:103)
+	at org.geoserver.platform.GeoServerContextLoaderListener.contextInitialized(GeoServerContextLoaderListener.java:22)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4007)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4448)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:599)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:571)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:603)
+	at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1175)
+	at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1888)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:118)
+	at org.apache.catalina.startup.HostConfig.deployDirectories(HostConfig.java:1086)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:470)
+	at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1584)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:312)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:109)
+	at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:385)
+	at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:332)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:776)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:721)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:211)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:415)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:878)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.startup.Catalina.start(Catalina.java:735)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:345)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:473)
+17 Jul 08:05:13 CONFIG [gwc.layer] - GeoServer TileLayer store base directory is: gwc-layers
+17 Jul 08:05:13 CONFIG [gwc.layer] - Loading tile layers from gwc-layers
+17 Jul 08:05:13 CONFIG [gwc.layer] - Loaded 0 tile layers in 775.5 μs
+17 Jul 08:05:13 INFO   [jdbc.JDBCQuotaStore] - Closing up the JDBC quota store 
+17 Jul 08:05:13 WARN   [support.DisposableBeanAdapter] - Custom destroy method 'destroy' on bean with name 'gwcMemoryBlobStore' threw an exception: java.util.concurrent.RejectedExecutionException: Task java.util.concurrent.FutureTask@6e96d83e[Not completed, task = org.geowebcache.storage.blobstore.memory.MemoryBlobStore$BlobStoreTask@1fd8703d] rejected from java.util.concurrent.ThreadPoolExecutor@34516a8b[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 1]
+17 Jul 08:05:13 INFO   [geoserver.logging] - Beginning GeoServer cleanup sequence
+CONFIG 2024-07-17 08:08:50,842 [main][Log4J2Logger.java:215] : Logging policy: Log4J2
+CONFIG 2024-07-17 08:08:51,011 [main][Log4J2Logger.java:189] : Factory implementations for category GridCoverageFactory:
+  org.geotools.coverage.grid.GridCoverageFactory
+CONFIG 2024-07-17 08:08:51,292 [main][Log4J2Logger.java:189] : Factory implementations for category FilterFactory:
+  org.geotools.filter.FilterFactoryImpl
+CONFIG 2024-07-17 08:08:51,306 [main][Log4J2Logger.java:189] : Factory implementations for category StyleFactory:
+  org.geotools.styling.StyleFactoryImpl
+CONFIG 2024-07-17 08:08:51,310 [main][Log4J2Logger.java:189] : Factory implementations for category FeatureFactory:
+  org.geotools.feature.LenientFeatureFactoryImpl
+  org.geotools.feature.ValidatingFeatureFactoryImpl
+DEBUG 2024-07-17 08:08:51,648 [main][Log4J2Logger.java:220] : Extension lookup 'XStreamPersisterInitializer', prior to bean geoserverExtensions initialisation.
+DEBUG 2024-07-17 08:08:51,649 [main][Log4J2Logger.java:220] : Extension lookup 'ExtensionFilter', prior to bean geoserverExtensions initialisation.
+DEBUG 2024-07-17 08:08:51,651 [main][Log4J2Logger.java:220] : Extension lookup 'ExtensionProvider', but provided ApplicationContext is unset.
+DEBUG 2024-07-17 08:08:51,651 [main][Log4J2Logger.java:220] : Extension lookup 'ExtensionFilter', but provided ApplicationContext is unset.
+DEBUG 2024-07-17 08:08:51,676 [main][Log4J2Logger.java:220] : CONFIGURING GEOSERVER LOGGING -------------------------
+17 Jul 08:08:51 CONFIG [geoserver.logging] - Log4j 2 configuration set to DEFAULT_LOGGING.xml
+17 Jul 08:08:54 CONFIG [org.geoserver] - GeoServer configuration lock is enabled
+17 Jul 08:08:55 CONFIG [org.geoserver] - Loading catalog /opt/geoserver/data_dir
+17 Jul 08:08:55 CONFIG [org.geoserver] - Loaded style 'raster'
+17 Jul 08:08:55 CONFIG [org.geoserver] - Loaded style 'point'
+17 Jul 08:08:55 CONFIG [org.geoserver] - Loaded style 'line'
+17 Jul 08:08:55 CONFIG [org.geoserver] - Loaded style 'generic'
+17 Jul 08:08:55 CONFIG [org.geoserver] - Loaded style 'polygon'
+17 Jul 08:08:55 WARN   [org.geoserver] - No 'workspaces' directory found, unable to load any stores.
+17 Jul 08:08:55 CONFIG [org.geoserver] - Read catalog in 122.1 ms
+17 Jul 08:08:55 CONFIG [org.geoserver] - Loaded service 'WFSInfoImpl-4139849f:190bfbcbb99:-8000', enabled
+17 Jul 08:08:55 CONFIG [org.geoserver] - Loaded service 'WCSInfoImpl-4139849f:190bfbcbb99:-7fff', enabled
+17 Jul 08:08:55 CONFIG [org.geoserver] - Loaded service 'WMTSInfoImpl-4139849f:190bfbcbb99:-7ffe', enabled
+17 Jul 08:08:55 CONFIG [org.geoserver] - Loaded service 'WMSInfoImpl-4139849f:190bfbcbb99:-7ffd', enabled
+17 Jul 08:08:55 CONFIG [org.geoserver] - Loaded service 'csw', enabled
+17 Jul 08:08:55 CONFIG [org.geoserver] - Loaded service 'WPSInfoImpl--2e943405:190bfb90dd9:-7ff7', enabled
+17 Jul 08:08:55 CONFIG [gwc.config] - Will look for 'geowebcache.xml' in directory '/opt/geoserver/gwc'.
+17 Jul 08:08:55 WARN   [config.XMLConfiguration] - GWC configuration validation error: cvc-elt.1.a: Cannot find the declaration of element 'gwcConfiguration'.
+17 Jul 08:08:55 WARN   [config.XMLConfiguration] - Will try to use configuration anyway. Please check the order of declared elements against the schema.
+17 Jul 08:08:55 CONFIG [config.XMLConfiguration] - Initializing GridSets from /opt/geoserver/gwc
+17 Jul 08:08:55 CONFIG [config.XMLConfiguration] - Initializing layers from /opt/geoserver/gwc
+17 Jul 08:08:55 CONFIG [gwc.layer] - Initializing GWC configuration based on GeoServer's Catalog
+17 Jul 08:08:55 CONFIG [gwc.layer] - GeoServer TileLayer store base directory is: gwc-layers
+17 Jul 08:08:55 CONFIG [gwc.layer] - Loading tile layers from gwc-layers
+17 Jul 08:08:55 CONFIG [gwc.layer] - Loaded 0 tile layers in 4.458 ms
+17 Jul 08:08:55 CONFIG [storage.BlobStoreAggregator] - BlobStoreConfiguration /opt/geoserver/gwc contained no blob store infos.
+17 Jul 08:08:55 CONFIG [storage.DefaultStorageFinder] - Found system environment variableGEOWEBCACHE_CACHE_DIR set to /opt/geoserver/gwc, using it as the default prefix.
+17 Jul 08:08:56 CONFIG [gwc.config] - Initializing GeoServer specific GWC configuration from gwc-gs.xml
+17 Jul 08:08:56 INFO   [flow.config] - Loaded control-flow rule: ows.global=100
+17 Jul 08:08:56 INFO   [flow.config] - Loaded control-flow rule: ows.wms.getmap=10
+17 Jul 08:08:56 INFO   [flow.config] - Loaded control-flow rule: ows.wfs.getfeature.application/msexcel=4
+17 Jul 08:08:56 INFO   [flow.config] - Loaded control-flow rule: user=6
+17 Jul 08:08:56 INFO   [flow.config] - Loaded control-flow rule: ows.gwc=16
+17 Jul 08:08:56 INFO   [flow.config] - Loaded control-flow rule: user.ows.wps.execute=1000/d;30s
+17 Jul 08:08:56 CONFIG [geoserver.flow] - Control-flow active with 6 flow controllers
+17 Jul 08:08:57 CONFIG [gwc.config] - Will look for 'geowebcache-diskquota.xml' in directory '/opt/geoserver/gwc'.
+17 Jul 08:08:57 CONFIG [gwc.config] - Will look for 'geowebcache-diskquota-jdbc.xml' in directory '/opt/geoserver/gwc'.
+17 Jul 08:08:57 CONFIG [diskquota.ConfigLoader] - Quota config is: /opt/geoserver/gwc/geowebcache-diskquota.xml
+17 Jul 08:08:57 CONFIG [diskquota.ConfigLoader] - Quota config is: /opt/geoserver/gwc/geowebcache-diskquota.xml
+17 Jul 08:09:00 WARN   [gce.imagemosaic] - Unable to set ordering between tiff readers spi
+17 Jul 08:09:00 CONFIG [geowebcache.GeoWebCacheDispatcher] - Invoked setServletPrefix(gwc)
+17 Jul 08:09:00 CONFIG [wms.WMSService] - Will NOT recombine tiles for non-tiling clients.
+17 Jul 08:09:00 CONFIG [wms.WMSService] - Will proxy requests to backend that are not getmap or getcapabilities.
+17 Jul 08:09:01 WARN   [turbojpeg.TurboJPEGMapResponse] - The turbo jpeg encoder is available for usage
+17 Jul 08:09:05 INFO   [geoserver.monitor] - Monitor extension enabled
+17 Jul 08:09:05 INFO   [cluster.impl] - Using brokerURI: failover:()
+17 Jul 08:09:06 CONFIG [geoserver.wps] - Found 5 bindable processes in GeoServer specific processes
+17 Jul 08:09:06 CONFIG [geoserver.wps] - Found 89 bindable processes in Deprecated processes
+17 Jul 08:09:06 CONFIG [geoserver.wps] - Blacklisting process vec:GroupCandidateSelection as the input groupingAttributes of type class java.lang.Object cannot be handled
+17 Jul 08:09:06 CONFIG [geoserver.wps] - Found 31 bindable processes in Vector processes
+17 Jul 08:09:06 CONFIG [geoserver.wps] - Blacklisting process ras:ConvolveCoverage as the input kernel of type class javax.media.jai.KernelJAI cannot be handled
+17 Jul 08:09:06 CONFIG [geoserver.wps] - Blacklisting process ras:RasterZonalStatistics2 as the input zones of type class java.lang.Object cannot be handled
+17 Jul 08:09:06 CONFIG [geoserver.wps] - Blacklisting process ras:RasterZonalStatistics2 as the input nodata of type class it.geosolutions.jaiext.range.Range cannot be handled
+17 Jul 08:09:06 CONFIG [geoserver.wps] - Blacklisting process ras:RasterZonalStatistics2 as the input rangeData of type class java.lang.Object cannot be handled
+17 Jul 08:09:06 CONFIG [geoserver.wps] - Blacklisting process ras:RasterZonalStatistics2 as the output zonal statistics of type interface java.util.List cannot be handled
+17 Jul 08:09:06 CONFIG [geoserver.wps] - Found 18 bindable processes in Raster processes
+17 Jul 08:09:06 CONFIG [geoserver.wps] - Found 48 bindable processes in Geometry processes
+17 Jul 08:09:06 CONFIG [geoserver.wps] - Found 1 bindable processes in PolygonLabelProcess
+17 Jul 08:09:06 CONFIG [geoserver.wps] - Found 1 bindable processes in geo
+17 Jul 08:09:06 CONFIG [geoserver.wps] - Found 1 bindable processes in geo
+17 Jul 08:09:06 CONFIG [diskquota.ConfigLoader] - Quota config is: /opt/geoserver/gwc/geowebcache-diskquota.xml
+17 Jul 08:09:06 CONFIG [diskquota.DiskQuotaMonitor] - Setting up disk quota periodic enforcement task
+17 Jul 08:09:06 CONFIG [diskquota.DiskQuotaMonitor] - 0 layers configured with their own quotas. 
+17 Jul 08:09:06 CONFIG [diskquota.DiskQuotaMonitor] - 0 layers attached to global quota 20.0 GB
+17 Jul 08:09:06 CONFIG [diskquota.DiskQuotaMonitor] - Disk quota periodic enforcement task set up every 5 SECONDS
+17 Jul 08:09:07 INFO   [cluster.impl] - Starting the embedded brokerURI
+17 Jul 08:09:07 ERROR  [broker.BrokerService] - Failed to start Apache ActiveMQ (6b1305ebdcb3, ID:6b1305ebdcb3-44539-1721203747776-0:1)
+java.io.IOException: Transport not scheme specified: [?maximumConnections=1000&wireFormat.maxFrameSize=104857600&jms.useAsyncSend=true&transport.daemon=true&trace=true]
+	at org.apache.activemq.transport.TransportFactory.findTransportFactory(TransportFactory.java:176)
+	at org.apache.activemq.transport.TransportFactorySupport.bind(TransportFactorySupport.java:32)
+	at org.apache.activemq.broker.TransportConnector.createTransportServer(TransportConnector.java:334)
+	at org.apache.activemq.broker.TransportConnector.getServer(TransportConnector.java:143)
+	at org.apache.activemq.broker.TransportConnector.start(TransportConnector.java:210)
+	at org.apache.activemq.broker.BrokerService.startTransportConnector(BrokerService.java:2760)
+	at org.apache.activemq.broker.BrokerService.startAllConnectors(BrokerService.java:2653)
+	at org.apache.activemq.broker.BrokerService.doStartBroker(BrokerService.java:777)
+	at org.apache.activemq.broker.BrokerService.startBroker(BrokerService.java:739)
+	at org.apache.activemq.broker.BrokerService.start(BrokerService.java:642)
+	at org.geoserver.cluster.impl.JMSActiveMQFactory.startEmbeddedBroker(JMSActiveMQFactory.java:227)
+	at org.geoserver.cluster.impl.JMSActiveMQFactory.init(JMSActiveMQFactory.java:309)
+	at org.geoserver.cluster.impl.JMSActiveMQFactory.onApplicationEvent(JMSActiveMQFactory.java:350)
+	at org.geoserver.cluster.impl.JMSActiveMQFactory.onApplicationEvent(JMSActiveMQFactory.java:34)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:178)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:171)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:145)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:430)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:387)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:952)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:594)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:399)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:278)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:103)
+	at org.geoserver.platform.GeoServerContextLoaderListener.contextInitialized(GeoServerContextLoaderListener.java:22)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4007)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4448)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:599)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:571)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:603)
+	at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1175)
+	at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1888)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:118)
+	at org.apache.catalina.startup.HostConfig.deployDirectories(HostConfig.java:1086)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:470)
+	at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1584)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:312)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:109)
+	at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:385)
+	at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:332)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:776)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:721)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:211)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:415)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:878)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.startup.Catalina.start(Catalina.java:735)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:345)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:473)
+17 Jul 08:09:07 CONFIG [gwc.layer] - GeoServer TileLayer store base directory is: gwc-layers
+17 Jul 08:09:07 CONFIG [gwc.layer] - Loading tile layers from gwc-layers
+17 Jul 08:09:07 CONFIG [gwc.layer] - Loaded 0 tile layers in 846.8 μs
+17 Jul 08:09:07 ERROR  [cluster.impl] - Transport not scheme specified: [?maximumConnections=1000&wireFormat.maxFrameSize=104857600&jms.useAsyncSend=true&transport.daemon=true&trace=true]
+java.io.IOException: Transport not scheme specified: [?maximumConnections=1000&wireFormat.maxFrameSize=104857600&jms.useAsyncSend=true&transport.daemon=true&trace=true]
+	at org.apache.activemq.transport.TransportFactory.findTransportFactory(TransportFactory.java:176)
+	at org.apache.activemq.transport.TransportFactorySupport.bind(TransportFactorySupport.java:32)
+	at org.apache.activemq.broker.TransportConnector.createTransportServer(TransportConnector.java:334)
+	at org.apache.activemq.broker.TransportConnector.getServer(TransportConnector.java:143)
+	at org.apache.activemq.broker.TransportConnector.start(TransportConnector.java:210)
+	at org.apache.activemq.broker.BrokerService.startTransportConnector(BrokerService.java:2760)
+	at org.apache.activemq.broker.BrokerService.startAllConnectors(BrokerService.java:2653)
+	at org.apache.activemq.broker.BrokerService.doStartBroker(BrokerService.java:777)
+	at org.apache.activemq.broker.BrokerService.startBroker(BrokerService.java:739)
+	at org.apache.activemq.broker.BrokerService.start(BrokerService.java:642)
+	at org.geoserver.cluster.impl.JMSActiveMQFactory.startEmbeddedBroker(JMSActiveMQFactory.java:227)
+	at org.geoserver.cluster.impl.JMSActiveMQFactory.init(JMSActiveMQFactory.java:309)
+	at org.geoserver.cluster.impl.JMSActiveMQFactory.onApplicationEvent(JMSActiveMQFactory.java:350)
+	at org.geoserver.cluster.impl.JMSActiveMQFactory.onApplicationEvent(JMSActiveMQFactory.java:34)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:178)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:171)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:145)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:430)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:387)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:952)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:594)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:399)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:278)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:103)
+	at org.geoserver.platform.GeoServerContextLoaderListener.contextInitialized(GeoServerContextLoaderListener.java:22)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4007)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4448)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:599)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:571)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:603)
+	at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1175)
+	at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1888)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:118)
+	at org.apache.catalina.startup.HostConfig.deployDirectories(HostConfig.java:1086)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:470)
+	at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1584)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:312)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:109)
+	at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:385)
+	at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:332)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:776)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:721)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:211)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:415)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:878)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.startup.Catalina.start(Catalina.java:735)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:345)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:473)
+17 Jul 08:09:07 CONFIG [gwc.layer] - GeoServer TileLayer store base directory is: gwc-layers
+17 Jul 08:09:07 CONFIG [gwc.layer] - Loading tile layers from gwc-layers
+17 Jul 08:09:07 CONFIG [gwc.layer] - Loaded 0 tile layers in 677.5 μs
+17 Jul 08:09:08 INFO   [jdbc.JDBCQuotaStore] - Closing up the JDBC quota store 
+17 Jul 08:09:08 WARN   [support.DisposableBeanAdapter] - Custom destroy method 'destroy' on bean with name 'gwcMemoryBlobStore' threw an exception: java.util.concurrent.RejectedExecutionException: Task java.util.concurrent.FutureTask@58a57dea[Not completed, task = org.geowebcache.storage.blobstore.memory.MemoryBlobStore$BlobStoreTask@54e92418] rejected from java.util.concurrent.ThreadPoolExecutor@81238c5[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 1]
+17 Jul 08:09:08 INFO   [geoserver.logging] - Beginning GeoServer cleanup sequence

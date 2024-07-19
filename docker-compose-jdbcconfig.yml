@@ -1,0 +1,167 @@
+x-common-geoserver:
+  &default-common-geoserver
+  image: kartoza/geoserver:2.25.2
+  restart: unless-stopped
+  healthcheck:
+      test: "curl --fail --silent --write-out 'HTTP CODE : %{http_code}\n' --output /dev/null -u admin:'geoserver' http://localhost:8080/geoserver/rest/about/version.xml"
+      interval: 1m30s
+      timeout: 10s
+      retries: 10
+  volumes:
+    - geoserver-cluster-data:/opt/geoserver/data_dir
+    - geoserver-cluster-gwc-data:/opt/geoserver/gwc
+    - ./geoserver/logging.xml:/opt/geoserver/data_dir/logging.xml:ro
+    - ./geoserver/jdbcconfig.properties:/opt/geoserver/data_dir/jdbcconfig/jdbcconfig.properties:ro
+    - ./geoserver/jdbcstore.properties:/opt/geoserver/data_dir/jdbcstore/jdbcstore.properties:ro
+    - ./geoserver/hz_cluster.properties:/opt/geoserver/data_dir/cluster/cluster.properties:rw
+    # - ./geoserver/jdbcstatusstore.props:/opt/geoserver/data_dir/jdbcstatusstore.props:ro
+
+services:
+
+  db:
+    image: kartoza/postgis:16-3.4
+    volumes:
+      - geo-db-data:/var/lib/postgresql
+    ports:
+      - "55432:5432"
+    environment:
+      - POSTGRES_DB=gis,data,sample,geoserver_config,geoserver_data
+      - POSTGRES_USER=docker
+      - POSTGRES_PASS=docker
+      - ALLOW_IP_RANGE=0.0.0.0/0
+      - FORCE_SSL=TRUE
+    restart: unless-stopped
+    healthcheck:
+      test: "PGPASSWORD=docker pg_isready -h 127.0.0.1 -U docker -d gis"
+
+  master:
+    << : *default-common-geoserver
+    environment:
+      - GEOWEBCACHE_CACHE_DIR=/opt/geoserver/gwc
+      - CLUSTERING=false
+      - CLUSTER_DURABILITY=true
+      - DB_BACKEND=POSTGRES
+      - HOST=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=gis
+      - POSTGRES_USER=docker
+      - POSTGRES_PASS=docker
+      - SSL_MODE=ALLOW
+      - READONLY=disabled
+      - TOGGLE_MASTER=true
+      - TOGGLE_SLAVE=false
+      - RUN_AS_ROOT=TRUE
+      - GEOSERVER_ADMIN_USER=admin
+      - GEOSERVER_ADMIN_PASSWORD=geoserver
+      - STABLE_EXTENSIONS=wps-jdbc-plugin,gwc-s3-plugin,importer-plugin,web-resource-plugin
+      - COMMUNITY_EXTENSIONS=jdbcconfig-plugin,jdbcstore-plugin,hz-cluster-plugin
+      - ADDITIONAL_JAVA_STARTUP_OPTIONS="--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED"
+    depends_on:
+        db:
+          condition: service_healthy
+
+  node1:
+    << : *default-common-geoserver
+    environment:
+      - GEOWEBCACHE_CACHE_DIR=/opt/geoserver/gwc
+      - CLUSTERING=false
+      - CLUSTER_DURABILITY=true
+      - DB_BACKEND=POSTGRES
+      - HOST=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=gis
+      - POSTGRES_USER=docker
+      - POSTGRES_PASS=docker
+      - SSL_MODE=ALLOW
+      - READONLY=disabled
+      - TOGGLE_MASTER=true
+      - TOGGLE_SLAVE=true
+      - RUN_AS_ROOT=TRUE
+      - GEOSERVER_ADMIN_USER=admin
+      - GEOSERVER_ADMIN_PASSWORD=geoserver
+      - STABLE_EXTENSIONS=wps-jdbc-plugin,gwc-s3-plugin,importer-plugin,web-resource-plugin
+      - COMMUNITY_EXTENSIONS=jdbcconfig-plugin,jdbcstore-plugin,hz-cluster-plugin
+      - ADDITIONAL_JAVA_STARTUP_OPTIONS="--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED"
+    depends_on:
+        master:
+          condition: service_healthy
+
+  node2:
+    << : *default-common-geoserver
+    environment:
+      - GEOWEBCACHE_CACHE_DIR=/opt/geoserver/gwc
+      - CLUSTERING=false
+      - CLUSTER_DURABILITY=true
+      - DB_BACKEND=POSTGRES
+      - HOST=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=gis
+      - POSTGRES_USER=docker
+      - POSTGRES_PASS=docker
+      - SSL_MODE=ALLOW
+      - READONLY=disabled
+      - TOGGLE_MASTER=true
+      - TOGGLE_SLAVE=true
+      - RUN_AS_ROOT=TRUE
+      - GEOSERVER_ADMIN_USER=admin
+      - GEOSERVER_ADMIN_PASSWORD=geoserver
+      - STABLE_EXTENSIONS=wps-jdbc-plugin,gwc-s3-plugin,importer-plugin,web-resource-plugin
+      - COMMUNITY_EXTENSIONS=jdbcconfig-plugin,jdbcstore-plugin,hz-cluster-plugin
+      - ADDITIONAL_JAVA_STARTUP_OPTIONS="--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED"
+    depends_on:
+        master:
+          condition: service_healthy
+
+  node3:
+    << : *default-common-geoserver
+    environment:
+      - GEOWEBCACHE_CACHE_DIR=/opt/geoserver/gwc
+      - CLUSTERING=false
+      - CLUSTER_DURABILITY=true
+      - DB_BACKEND=POSTGRES
+      - HOST=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=gis
+      - POSTGRES_USER=docker
+      - POSTGRES_PASS=docker
+      - SSL_MODE=ALLOW
+      - READONLY=disabled
+      - TOGGLE_MASTER=true
+      - TOGGLE_SLAVE=true
+      - RUN_AS_ROOT=TRUE
+      - GEOSERVER_ADMIN_USER=admin
+      - GEOSERVER_ADMIN_PASSWORD=geoserver
+      - STABLE_EXTENSIONS=wps-jdbc-plugin,gwc-s3-plugin,importer-plugin,web-resource-plugin
+      - COMMUNITY_EXTENSIONS=jdbcconfig-plugin,jdbcstore-plugin,hz-cluster-plugin
+      - ADDITIONAL_JAVA_STARTUP_OPTIONS="--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED"
+    depends_on:
+        master:
+          condition: service_healthy
+
+  haproxy:
+    image: haproxy:latest
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      master:
+        condition: service_healthy
+    environment:
+      - RSYSLOG_UDP_SERVER=invalid
+
+volumes:
+  geo-db-data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./db/db_data
+  geoserver-cluster-data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./geoserver/data_dir
+  geoserver-cluster-gwc-data:

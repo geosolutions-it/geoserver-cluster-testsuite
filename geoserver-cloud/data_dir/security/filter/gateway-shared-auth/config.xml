@@ -1,0 +1,5 @@
+<gatewaySharedAuthenticationFilter>
+  <id>5c4cc1bb:190c631d245:-8000</id>
+  <name>gateway-shared-auth</name>
+  <className>org.geoserver.cloud.security.gateway.sharedauth.GatewaySharedAuthenticationFilter</className>
+</gatewaySharedAuthenticationFilter>

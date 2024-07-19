@@ -1,0 +1,17 @@
+<layer>
+  <name>tasmania_state_boundaries-copy-308</name>
+  <id>LayerInfo-01J334DKA24EE7KA3YN7G3N3P5</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--2e943405:190bfb90dd9:-7ffe</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfo-01J334DK1T2TJ5T6YWTEEMR66J</id>
+  </resource>
+  <queryable>true</queryable>
+  <opaque>false</opaque>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

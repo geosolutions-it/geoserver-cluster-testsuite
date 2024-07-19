@@ -1,0 +1,6 @@
+
+<logging>
+  <level>QUIET_LOGGING</level>
+  <stdOutLogging>false</stdOutLogging>
+</logging>
+

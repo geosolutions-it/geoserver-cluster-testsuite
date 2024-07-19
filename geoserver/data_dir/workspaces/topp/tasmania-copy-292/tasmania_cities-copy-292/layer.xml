@@ -1,0 +1,18 @@
+<layer>
+  <name>tasmania_cities-copy-292</name>
+  <id>LayerInfoImpl-d394fa8:190bfbfea91:-75ab</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--2e943405:190bfb90dd9:-8000</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-d394fa8:190bfbfea91:-75ac</id>
+  </resource>
+  <queryable>true</queryable>
+  <opaque>false</opaque>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2024-07-17 08:23:09.829 UTC</dateCreated>
+</layer>
