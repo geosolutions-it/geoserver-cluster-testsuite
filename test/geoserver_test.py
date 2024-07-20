@@ -7,23 +7,42 @@ import csv
 import random
 from collections import defaultdict
 
-# Define the overall bounding box and other parameters
-OVERALL_BBOX = (143.83482400000003, -43.648056, 148.47914100000003, -39.573891)
-
-## For the GeoServer Cloud mode use those ones instead...
-# BASE_HOST = "http://localhost:8080"
-# GEOSERVER_PATH = "/geoserver/cloud/ows"
+# General configuration
+GLOBAL_TIMEOUT = 60
+OVERALL_BBOX = (12.48046875, -34.8046875, 74.00390625, 105.8203125)
 BASE_HOST = "http://localhost"
-GEOSERVER_PATH = "/geoserver/ows"
-
-LAYERS = [
-    "topp:tasmania_state_boundaries",
-    "topp:tasmania_roads",
-    "topp:tasmania_cities",
-]
+GEOSERVER_PATH = "/geoserver/ne/wms"
+LAYERS = ["ne:ne-political"]
 CRS = "EPSG:4326"
-STYLES = ""  # Empty string for default styles
+STYLES = ""
 WMS_VERSION = "1.1.1"
+
+# Global variables to control randomization
+RANDOMIZE_BBOX = False
+RANDOMIZE_DIMENSIONS = False
+
+# Fixed dimensions when RANDOMIZE_DIMENSIONS is False
+FIXED_WIDTH = 800
+FIXED_HEIGHT = 600
+
+# Parameters for find_optimal_concurrency
+INITIAL_REQUESTS = 10
+CONCURRENCY_START = 1
+CONCURRENCY_STEP = 1
+CONCURRENCY_MAX = 100
+RAMP_UP_TIME = 0
+
+# Parameters for main function
+NUM_REQUESTS_START = 1
+NUM_REQUESTS_STEP = 2
+NUM_REQUESTS_MAX = 100
+
+# Extracted throughput percentages
+THROUGHPUT_DECREASE_THRESHOLD = 0.7  # 30% decrease
+
+# Extracted ramp-up times
+DEFAULT_RAMP_UP_TIME = 0
+FIND_OPTIMAL_CONCURRENCY_RAMP_UP_TIME = 0
 
 
 def generate_random_bbox(overall_bbox):
@@ -39,15 +58,24 @@ def generate_random_bbox(overall_bbox):
     return f"{x1},{y1},{x2},{y2}"
 
 
-def generate_random_dimensions():
-    width = random.randint(300, 1000)
-    height = random.randint(200, 800)
+def generate_dimensions():
+    if RANDOMIZE_DIMENSIONS:
+        width = random.randint(300, 1000)
+        height = random.randint(200, 800)
+    else:
+        width, height = FIXED_WIDTH, FIXED_HEIGHT
     return width, height
 
 
-async def make_request(session, timeout=5):
-    bbox = generate_random_bbox(OVERALL_BBOX)
-    width, height = generate_random_dimensions()
+async def make_request(session, timeout=GLOBAL_TIMEOUT):
+    if RANDOMIZE_BBOX:
+        bbox = generate_random_bbox(OVERALL_BBOX)
+    else:
+        bbox = (
+            f"{OVERALL_BBOX[0]},{OVERALL_BBOX[1]},{OVERALL_BBOX[2]},{OVERALL_BBOX[3]}"
+        )
+
+    width, height = generate_dimensions()
 
     url = (
         f"{BASE_HOST}{GEOSERVER_PATH}"
@@ -90,7 +118,7 @@ async def make_request(session, timeout=5):
     return {"response_time": response_time, "is_valid": is_valid}
 
 
-async def run_test(num_requests, concurrency, ramp_up_time=0):
+async def run_test(num_requests, concurrency, ramp_up_time=DEFAULT_RAMP_UP_TIME):
     async with aiohttp.ClientSession() as session:
         start_time = time.time()
 
@@ -121,7 +149,6 @@ async def run_test(num_requests, concurrency, ramp_up_time=0):
     )
     throughput = num_requests / total_time
 
-    # Calculate additional metrics
     errors = sum(1 for result in results if isinstance(result, Exception))
     timeouts = sum(
         1
@@ -131,7 +158,6 @@ async def run_test(num_requests, concurrency, ramp_up_time=0):
         and result["response_time"] >= 5
     )
 
-    # Calculate response time distribution
     response_time_distribution = defaultdict(int)
     for rt in response_times:
         bucket = round(rt, 1)  # Round to nearest 0.1s
@@ -151,11 +177,11 @@ async def run_test(num_requests, concurrency, ramp_up_time=0):
 
 
 async def find_optimal_concurrency(
-    initial_requests=100,
-    concurrency_start=1,
-    concurrency_step=10,
-    concurrency_max=1000,
-    ramp_up_time=5,
+    initial_requests=INITIAL_REQUESTS,
+    concurrency_start=CONCURRENCY_START,
+    concurrency_step=CONCURRENCY_STEP,
+    concurrency_max=CONCURRENCY_MAX,
+    ramp_up_time=FIND_OPTIMAL_CONCURRENCY_RAMP_UP_TIME,
 ):
     max_throughput = 0
     optimal_concurrency = 0
@@ -180,7 +206,7 @@ async def find_optimal_concurrency(
         if result["throughput"] > max_throughput:
             max_throughput = result["throughput"]
             optimal_concurrency = concurrency
-        elif result["throughput"] < max_throughput * 0.7:  # 30% decrease
+        elif result["throughput"] < max_throughput * THROUGHPUT_DECREASE_THRESHOLD:
             break
 
     print(f"Optimal concurrency: {optimal_concurrency}")
@@ -188,12 +214,12 @@ async def find_optimal_concurrency(
 
 
 async def main():
-    ramp_up_time = 0  # Set the desired ramp-up time in seconds
-    optimal_concurrency = await find_optimal_concurrency(ramp_up_time=ramp_up_time)
+    ramp_up_time = FIND_OPTIMAL_CONCURRENCY_RAMP_UP_TIME
+    optimal_concurrency = await find_optimal_concurrency()
 
-    num_requests_start = 100
-    num_requests_step = 100
-    num_requests_max = 10000
+    num_requests_start = NUM_REQUESTS_START
+    num_requests_step = NUM_REQUESTS_STEP
+    num_requests_max = NUM_REQUESTS_MAX
     max_throughput = 0
     optimal_num_requests = 0
     results = []
@@ -244,7 +270,7 @@ async def main():
             if result["throughput"] > max_throughput:
                 max_throughput = result["throughput"]
                 optimal_num_requests = num_requests
-            elif result["throughput"] < max_throughput * 0.7:  # 30% decrease
+            elif result["throughput"] < max_throughput * THROUGHPUT_DECREASE_THRESHOLD:
                 break
 
     print(f"Maximum throughput: {max_throughput:.2f} requests/second")

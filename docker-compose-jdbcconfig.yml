@@ -2,6 +2,8 @@ x-common-geoserver:
   &default-common-geoserver
   image: kartoza/geoserver:2.25.2
   restart: unless-stopped
+  env_file:
+    - .env
   healthcheck:
       test: "curl --fail --silent --write-out 'HTTP CODE : %{http_code}\n' --output /dev/null -u admin:'geoserver' http://localhost:8080/geoserver/rest/about/version.xml"
       interval: 1m30s
@@ -10,11 +12,21 @@ x-common-geoserver:
   volumes:
     - geoserver-cluster-data:/opt/geoserver/data_dir
     - geoserver-cluster-gwc-data:/opt/geoserver/gwc
-    - ./geoserver/logging.xml:/opt/geoserver/data_dir/logging.xml:ro
+    # - ./geoserver/logging.xml:/opt/geoserver/data_dir/logging.xml:ro
     - ./geoserver/jdbcconfig.properties:/opt/geoserver/data_dir/jdbcconfig/jdbcconfig.properties:ro
     - ./geoserver/jdbcstore.properties:/opt/geoserver/data_dir/jdbcstore/jdbcstore.properties:ro
-    - ./geoserver/hz_cluster.properties:/opt/geoserver/data_dir/cluster/cluster.properties:rw
-    # - ./geoserver/jdbcstatusstore.props:/opt/geoserver/data_dir/jdbcstatusstore.props:ro
+    - ./geoserver/hz_cluster.properties:/opt/geoserver/data_dir/cluster/cluster.properties:ro
+    - ./geoserver/controlflow.properties:/opt/geoserver/data_dir/controlflow.properties:rw
+    - ./geoserver/hazelcast.xml:/opt/geoserver/data_dir/cluster/hazelcast.xml:ro
+    - ./geoserver/context-jndi.xml:/usr/local/tomcat/conf/context.xml:rw
+    # - ./geoserver/patch-hazelcast.sh:/usr/local/bin/patch-hazelcast.sh
+  # entrypoint: ["/bin/bash", "-c"]
+  # command:
+  #   - |
+  #     apt-get update && apt-get install -y xmlstarlet
+  #     chmod +x /usr/local/bin/patch-hazelcast.sh
+  #     /usr/local/bin/patch-hazelcast.sh
+  #     /scripts/entrypoint.sh
 
 services:
 
@@ -22,12 +34,16 @@ services:
     image: kartoza/postgis:16-3.4
     volumes:
       - geo-db-data:/var/lib/postgresql
-    ports:
-      - "55432:5432"
+      - ./db/postgresql.conf:/etc/postgresql/16/main/postgresql.conf.template:ro
+    # ports:
+    #   - "55432:5432"
     environment:
+      - POSTGRES_JNDI=TRUE
       - POSTGRES_DB=gis,data,sample,geoserver_config,geoserver_data
       - POSTGRES_USER=docker
       - POSTGRES_PASS=docker
+      - POSTGRES_MAX_CONNECTIONS=500
+      - POSTGRES_SHARED_BUFFERS=4GB
       - ALLOW_IP_RANGE=0.0.0.0/0
       - FORCE_SSL=TRUE
     restart: unless-stopped
@@ -37,25 +53,10 @@ services:
   master:
     << : *default-common-geoserver
     environment:
-      - GEOWEBCACHE_CACHE_DIR=/opt/geoserver/gwc
-      - CLUSTERING=false
-      - CLUSTER_DURABILITY=true
-      - DB_BACKEND=POSTGRES
-      - HOST=db
-      - POSTGRES_PORT=5432
-      - POSTGRES_DB=gis
-      - POSTGRES_USER=docker
-      - POSTGRES_PASS=docker
-      - SSL_MODE=ALLOW
       - READONLY=disabled
       - TOGGLE_MASTER=true
       - TOGGLE_SLAVE=false
-      - RUN_AS_ROOT=TRUE
-      - GEOSERVER_ADMIN_USER=admin
-      - GEOSERVER_ADMIN_PASSWORD=geoserver
-      - STABLE_EXTENSIONS=wps-jdbc-plugin,gwc-s3-plugin,importer-plugin,web-resource-plugin
       - COMMUNITY_EXTENSIONS=jdbcconfig-plugin,jdbcstore-plugin,hz-cluster-plugin
-      - ADDITIONAL_JAVA_STARTUP_OPTIONS="--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED"
     depends_on:
         db:
           condition: service_healthy
@@ -63,79 +64,34 @@ services:
   node1:
     << : *default-common-geoserver
     environment:
-      - GEOWEBCACHE_CACHE_DIR=/opt/geoserver/gwc
-      - CLUSTERING=false
-      - CLUSTER_DURABILITY=true
-      - DB_BACKEND=POSTGRES
-      - HOST=db
-      - POSTGRES_PORT=5432
-      - POSTGRES_DB=gis
-      - POSTGRES_USER=docker
-      - POSTGRES_PASS=docker
-      - SSL_MODE=ALLOW
-      - READONLY=disabled
-      - TOGGLE_MASTER=true
+      - READONLY=enabled
+      - TOGGLE_MASTER=false
       - TOGGLE_SLAVE=true
-      - RUN_AS_ROOT=TRUE
-      - GEOSERVER_ADMIN_USER=admin
-      - GEOSERVER_ADMIN_PASSWORD=geoserver
-      - STABLE_EXTENSIONS=wps-jdbc-plugin,gwc-s3-plugin,importer-plugin,web-resource-plugin
       - COMMUNITY_EXTENSIONS=jdbcconfig-plugin,jdbcstore-plugin,hz-cluster-plugin
-      - ADDITIONAL_JAVA_STARTUP_OPTIONS="--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED"
     depends_on:
-        master:
+        db:
           condition: service_healthy
 
   node2:
     << : *default-common-geoserver
     environment:
-      - GEOWEBCACHE_CACHE_DIR=/opt/geoserver/gwc
-      - CLUSTERING=false
-      - CLUSTER_DURABILITY=true
-      - DB_BACKEND=POSTGRES
-      - HOST=db
-      - POSTGRES_PORT=5432
-      - POSTGRES_DB=gis
-      - POSTGRES_USER=docker
-      - POSTGRES_PASS=docker
-      - SSL_MODE=ALLOW
-      - READONLY=disabled
-      - TOGGLE_MASTER=true
+      - READONLY=enabled
+      - TOGGLE_MASTER=false
       - TOGGLE_SLAVE=true
-      - RUN_AS_ROOT=TRUE
-      - GEOSERVER_ADMIN_USER=admin
-      - GEOSERVER_ADMIN_PASSWORD=geoserver
-      - STABLE_EXTENSIONS=wps-jdbc-plugin,gwc-s3-plugin,importer-plugin,web-resource-plugin
       - COMMUNITY_EXTENSIONS=jdbcconfig-plugin,jdbcstore-plugin,hz-cluster-plugin
-      - ADDITIONAL_JAVA_STARTUP_OPTIONS="--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED"
     depends_on:
-        master:
+        db:
           condition: service_healthy
 
   node3:
     << : *default-common-geoserver
     environment:
-      - GEOWEBCACHE_CACHE_DIR=/opt/geoserver/gwc
-      - CLUSTERING=false
-      - CLUSTER_DURABILITY=true
-      - DB_BACKEND=POSTGRES
-      - HOST=db
-      - POSTGRES_PORT=5432
-      - POSTGRES_DB=gis
-      - POSTGRES_USER=docker
-      - POSTGRES_PASS=docker
-      - SSL_MODE=ALLOW
-      - READONLY=disabled
-      - TOGGLE_MASTER=true
+      - READONLY=enabled
+      - TOGGLE_MASTER=false
       - TOGGLE_SLAVE=true
-      - RUN_AS_ROOT=TRUE
-      - GEOSERVER_ADMIN_USER=admin
-      - GEOSERVER_ADMIN_PASSWORD=geoserver
-      - STABLE_EXTENSIONS=wps-jdbc-plugin,gwc-s3-plugin,importer-plugin,web-resource-plugin
       - COMMUNITY_EXTENSIONS=jdbcconfig-plugin,jdbcstore-plugin,hz-cluster-plugin
-      - ADDITIONAL_JAVA_STARTUP_OPTIONS="--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED"
     depends_on:
-        master:
+        db:
           condition: service_healthy
 
   haproxy:
@@ -153,15 +109,10 @@ services:
 
 volumes:
   geo-db-data:
-    driver: local
-    driver_opts:
-      o: bind
-      type: none
-      device: ./db/db_data
   geoserver-cluster-data:
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: ./geoserver/data_dir
+      device: ./geoserver/ne-styles
   geoserver-cluster-gwc-data:
