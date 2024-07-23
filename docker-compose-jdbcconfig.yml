@@ -10,6 +10,7 @@ x-common-geoserver:
       timeout: 10s
       retries: 10
   volumes:
+    - settings:/settings
     - geoserver-cluster-data:/opt/geoserver/data_dir
     - geoserver-cluster-gwc-data:/opt/geoserver/gwc
     # - ./geoserver/logging.xml:/opt/geoserver/data_dir/logging.xml:ro
@@ -19,7 +20,6 @@ x-common-geoserver:
     - ./geoserver/controlflow.properties:/opt/geoserver/data_dir/controlflow.properties:rw
     - ./geoserver/hazelcast.xml:/opt/geoserver/data_dir/cluster/hazelcast.xml:ro
     - ./geoserver/context-jndi.xml:/usr/local/tomcat/conf/context.xml:rw
-    - ./geoserver/ne-styles/security/role/default/:/opt/geoserver/data_dir/security/role/default/:ro
     # - ./geoserver/patch-hazelcast.sh:/usr/local/bin/patch-hazelcast.sh
   # entrypoint: ["/bin/bash", "-c"]
   # command:
@@ -115,6 +115,12 @@ services:
       - RSYSLOG_UDP_SERVER=invalid
 
 volumes:
+  settings:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./geoserver/settings
   geo-db-data:
   geoserver-cluster-data:
     driver: local
