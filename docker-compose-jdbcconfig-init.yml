@@ -13,9 +13,12 @@ x-common-geoserver:
     - settings:/settings
     - geoserver-cluster-data:/opt/geoserver/data_dir
     - geoserver-cluster-gwc-data:/opt/geoserver/gwc
-    - ./geoserver/logging.xml:/opt/geoserver/data_dir/logging.xml:ro
-    - ./geoserver/jdbcstatusstore.props:/opt/geoserver/data_dir/jdbcstatusstore.props:ro
+    # - ./geoserver/logging.xml:/opt/geoserver/data_dir/logging.xml:ro
+    - ./geoserver/jdbcconfig.properties:/opt/geoserver/data_dir/jdbcconfig/jdbcconfig.properties:ro
+    - ./geoserver/jdbcstore.properties:/opt/geoserver/data_dir/jdbcstore/jdbcstore.properties:ro
+    - ./geoserver/hz_cluster.properties:/opt/geoserver/data_dir/cluster/cluster.properties:ro
     - ./geoserver/controlflow.properties:/opt/geoserver/data_dir/controlflow.properties:rw
+    - ./geoserver/hazelcast.xml:/opt/geoserver/data_dir/cluster/hazelcast.xml:ro
     - ./geoserver/context-jndi.xml:/usr/local/tomcat/conf/context.xml:rw
     # - ./geoserver/patch-hazelcast.sh:/usr/local/bin/patch-hazelcast.sh
   # entrypoint: ["/bin/bash", "-c"]
@@ -51,63 +54,12 @@ services:
   master:
     << : *default-common-geoserver
     environment:
-      - CLUSTERING=true
-      - CLUSTER_DURABILITY=false
-      - BROKER_URL=tcp://0.0.0.0:61661
       - READONLY=disabled
       - TOGGLE_MASTER=true
       - TOGGLE_SLAVE=false
-      - COMMUNITY_EXTENSIONS=datadir-catalog-loader-plugin
+      - COMMUNITY_EXTENSIONS=jdbcconfig-plugin,jdbcstore-plugin
     depends_on:
         db:
-          condition: service_healthy
-
-  node1:
-    << : *default-common-geoserver
-    environment:
-      - CLUSTERING=true
-      - CLUSTER_DURABILITY=false
-      - BROKER_URL=tcp://0.0.0.0:61661
-      - READONLY=enabled
-      - TOGGLE_MASTER=false
-      - TOGGLE_SLAVE=true
-      - COMMUNITY_EXTENSIONS=datadir-catalog-loader-plugin
-    depends_on:
-        db:
-          condition: service_healthy
-        master:
-          condition: service_healthy
-
-  node2:
-    << : *default-common-geoserver
-    environment:
-      - CLUSTERING=true
-      - CLUSTER_DURABILITY=false
-      - BROKER_URL=tcp://0.0.0.0:61661
-      - READONLY=enabled
-      - TOGGLE_MASTER=false
-      - TOGGLE_SLAVE=true
-      - COMMUNITY_EXTENSIONS=datadir-catalog-loader-plugin
-    depends_on:
-        db:
-          condition: service_healthy
-        master:
-          condition: service_healthy
-
-  node3:
-    << : *default-common-geoserver
-    environment:
-      - CLUSTERING=true
-      - CLUSTER_DURABILITY=false
-      - BROKER_URL=tcp://0.0.0.0:61661
-      - READONLY=enabled
-      - TOGGLE_MASTER=false
-      - TOGGLE_SLAVE=true
-      - COMMUNITY_EXTENSIONS=datadir-catalog-loader-plugin
-    depends_on:
-        db:
-          condition: service_healthy
-        master:
           condition: service_healthy
 
   haproxy:
@@ -122,22 +74,6 @@ services:
         condition: service_healthy
     environment:
       - RSYSLOG_UDP_SERVER=invalid
-
-  # nginx:
-  #   image: nginx:latest
-  #   ports:
-  #     - "80:80"
-  #   volumes:
-  #     - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-  #   depends_on:
-  #     master:
-  #       condition: service_healthy
-  #     node1:
-  #       condition: service_healthy
-  #     node2:
-  #       condition: service_healthy
-  #     node3:
-  #       condition: service_healthy
 
 volumes:
   settings:
