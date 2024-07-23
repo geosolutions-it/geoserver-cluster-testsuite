@@ -7,8 +7,8 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: ./geoserver-cloud/data_dir
-  
+      device: ./geoserver/ne-styles
+
 networks:
   gs-cloud-network:
         
@@ -132,7 +132,7 @@ services:
       - shared_data_directory:/opt/app/data_directory
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 1
       resources:
         limits:
           cpus: '2.0'
@@ -174,7 +174,7 @@ services:
       - shared_data_directory:/opt/app/data_directory
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 1
       resources:
         limits:
           cpus: '2.0'
@@ -234,7 +234,7 @@ services:
       - geowebcache_data:/data/geowebcache
     deploy:
       mode: replicated
-      replicas: 5
+      replicas: 2
       resources:
         limits:
           cpus: '2.0'

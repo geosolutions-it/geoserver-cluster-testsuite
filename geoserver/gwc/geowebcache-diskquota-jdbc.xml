@@ -4,7 +4,7 @@
     <driver>org.postgresql.Driver</driver>
     <url>jdbc:postgresql://db:5432/gis?&amp;currentSchema=public</url>
     <username>docker</username>
-    <password>docker</password>
+    <password>crypt1:aAg3bi2y43Bafgt3QCbxCA==</password>
     <minConnections>1</minConnections>
     <maxConnections>100</maxConnections>
     <connectionTimeout>10000</connectionTimeout>

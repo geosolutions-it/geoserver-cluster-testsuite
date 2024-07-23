@@ -3,15 +3,15 @@ volumes:
   # /opt/app is owned by the user geo:geo (603:603) in the containers. Otherwise it'd be owned by root
   # uncomment the driver_opts entry to bind mount an existing datadirectory and set the device: <path>
   # accordingly to the location of the data directory in the host
+  rabbitmq_data: # volume for rabbitmq data, so it doesn't create an anonymous one on each container
+  geowebcache_data: # used by gwc and web-ui to locate the default gwc tile cache directory 
   shared_data_directory:
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: ./geoserver-cloud/data_dir
-  rabbitmq_data: # volume for rabbitmq data, so it doesn't create an anonymous one on each container
-  geowebcache_data: # used by gwc and web-ui to locate the default gwc tile cache directory
-  
+      device: ./geoserver/ne-styles
+
 networks:
   gs-cloud-network:
         
@@ -118,7 +118,7 @@ services:
       - gs-cloud-network
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 1
       resources:
         limits:
           cpus: '2.0'
@@ -162,7 +162,7 @@ services:
       - gs-cloud-network
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 1
       resources:
         limits:
           cpus: '2.0'
@@ -183,7 +183,7 @@ services:
       - gs-cloud-network
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 1
       resources:
         limits:
           cpus: '1.5'
@@ -225,7 +225,7 @@ services:
       - geowebcache_data:/data/geowebcache
     deploy:
       mode: replicated
-      replicas: 5
+      replicas: 2
       resources:
         limits:
           cpus: '2.0'

@@ -1,8 +1,0 @@
-user=docker
-port=5432
-password=docker
-passwd=docker
-host=db
-database=gis
-driver=org.postgresql.Driver
-dbtype=postgis
