@@ -19,7 +19,7 @@ x-common-geoserver:
     - ./geoserver/controlflow.properties:/opt/geoserver/data_dir/controlflow.properties:rw
     - ./geoserver/hazelcast.xml:/opt/geoserver/data_dir/cluster/hazelcast.xml:ro
     - ./geoserver/context-jndi.xml:/usr/local/tomcat/conf/context.xml:rw
-    # - ./geoserver/ne-styles/security/role/default/rolex.xml:/opt/geoserver/data_dir/security/role/default/rolex.xml:ro
+    - ./geoserver/ne-styles/security/role/default/:/opt/geoserver/data_dir/security/role/default/:ro
     # - ./geoserver/patch-hazelcast.sh:/usr/local/bin/patch-hazelcast.sh
   # entrypoint: ["/bin/bash", "-c"]
   # command:
@@ -72,6 +72,8 @@ services:
     depends_on:
         db:
           condition: service_healthy
+        master:
+          condition: service_healthy
 
   node2:
     << : *default-common-geoserver
@@ -83,6 +85,8 @@ services:
     depends_on:
         db:
           condition: service_healthy
+        master:
+          condition: service_healthy
 
   node3:
     << : *default-common-geoserver
@@ -93,6 +97,8 @@ services:
       - COMMUNITY_EXTENSIONS=jdbcconfig-plugin,jdbcstore-plugin,hz-cluster-plugin #,datadir-catalog-loader-plugin
     depends_on:
         db:
+          condition: service_healthy
+        master:
           condition: service_healthy
 
   haproxy:
