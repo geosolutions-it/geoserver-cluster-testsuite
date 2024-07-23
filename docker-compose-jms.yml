@@ -58,6 +58,7 @@ services:
       - READONLY=disabled
       - TOGGLE_MASTER=true
       - TOGGLE_SLAVE=false
+      - COMMUNITY_EXTENSIONS=datadir-catalog-loader-plugin
     depends_on:
         db:
           condition: service_healthy
@@ -73,6 +74,7 @@ services:
       - READONLY=enabled
       - TOGGLE_MASTER=false
       - TOGGLE_SLAVE=true
+      - COMMUNITY_EXTENSIONS=datadir-catalog-loader-plugin
     depends_on:
         master:
           condition: service_healthy
@@ -88,6 +90,7 @@ services:
       - READONLY=enabled
       - TOGGLE_MASTER=false
       - TOGGLE_SLAVE=true
+      - COMMUNITY_EXTENSIONS=datadir-catalog-loader-plugin
     depends_on:
         master:
           condition: service_healthy
@@ -103,6 +106,7 @@ services:
       - READONLY=enabled
       - TOGGLE_MASTER=false
       - TOGGLE_SLAVE=true
+      - COMMUNITY_EXTENSIONS=datadir-catalog-loader-plugin
     depends_on:
         master:
           condition: service_healthy
@@ -145,3 +149,8 @@ volumes:
       type: none
       device: ./geoserver/ne-styles
   geoserver-cluster-gwc-data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./geoserver/gwc

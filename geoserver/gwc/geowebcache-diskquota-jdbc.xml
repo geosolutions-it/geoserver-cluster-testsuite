@@ -1,0 +1,13 @@
+<gwcJdbcConfiguration>
+  <dialect>PostgreSQL</dialect>
+  <connectionPool>
+    <driver>org.postgresql.Driver</driver>
+    <url>jdbc:postgresql://db:5432/gis?&amp;currentSchema=public</url>
+    <username>docker</username>
+    <password>docker</password>
+    <minConnections>1</minConnections>
+    <maxConnections>100</maxConnections>
+    <connectionTimeout>10000</connectionTimeout>
+    <maxOpenPreparedStatements>50</maxOpenPreparedStatements>
+  </connectionPool>
+</gwcJdbcConfiguration>
