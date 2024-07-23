@@ -1,2 +1,0 @@
-num_requests,concurrency,total_requests,valid_requests,avg_response_time,throughput,total_time,errors,timeouts,ramp_up_time
-1,1,1,0,0.0010688304901123047,827.1157562610925,0.0012090206146240234,0,0,0

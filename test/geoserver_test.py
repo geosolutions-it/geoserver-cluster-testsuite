@@ -10,8 +10,8 @@ from collections import defaultdict
 # General configuration
 GLOBAL_TIMEOUT = 60
 OVERALL_BBOX = (12.48046875, -34.8046875, 74.00390625, 105.8203125)
-BASE_HOST = "http://localhost"
-GEOSERVER_PATH = "/geoserver/ne/wms"
+BASE_HOST = "http://localhost:8080"
+GEOSERVER_PATH = "/geoserver/cloud/ne/wms"
 LAYERS = ["ne:ne-political"]
 CRS = "EPSG:4326"
 STYLES = ""
