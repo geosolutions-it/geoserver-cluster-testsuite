@@ -54,7 +54,7 @@ services:
   master:
     << : *default-common-geoserver
     environment:
-      - COMMUNITY_EXTENSIONS=jdbcconfig-plugin,jdbcstore-plugin
+      - COMMUNITY_EXTENSIONS=jdbcstore-plugin
     depends_on:
         db:
           condition: service_healthy

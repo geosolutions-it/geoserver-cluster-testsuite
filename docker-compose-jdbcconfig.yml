@@ -57,7 +57,7 @@ services:
       - READONLY=disabled
       - TOGGLE_MASTER=true
       - TOGGLE_SLAVE=false
-      - COMMUNITY_EXTENSIONS=jdbcconfig-plugin,jdbcstore-plugin,hz-cluster-plugin #,datadir-catalog-loader-plugin
+      - COMMUNITY_EXTENSIONS=jdbcstore-plugin,hz-cluster-plugin #,datadir-catalog-loader-plugin
     depends_on:
         db:
           condition: service_healthy
@@ -68,7 +68,7 @@ services:
       - READONLY=enabled
       - TOGGLE_MASTER=false
       - TOGGLE_SLAVE=true
-      - COMMUNITY_EXTENSIONS=jdbcconfig-plugin,jdbcstore-plugin,hz-cluster-plugin #,datadir-catalog-loader-plugin
+      - COMMUNITY_EXTENSIONS=jdbcstore-plugin,hz-cluster-plugin #,datadir-catalog-loader-plugin
     depends_on:
         db:
           condition: service_healthy
@@ -81,7 +81,7 @@ services:
       - READONLY=enabled
       - TOGGLE_MASTER=false
       - TOGGLE_SLAVE=true
-      - COMMUNITY_EXTENSIONS=jdbcconfig-plugin,jdbcstore-plugin,hz-cluster-plugin #,datadir-catalog-loader-plugin
+      - COMMUNITY_EXTENSIONS=jdbcstore-plugin,hz-cluster-plugin #,datadir-catalog-loader-plugin
     depends_on:
         db:
           condition: service_healthy
@@ -94,7 +94,7 @@ services:
       - READONLY=enabled
       - TOGGLE_MASTER=false
       - TOGGLE_SLAVE=true
-      - COMMUNITY_EXTENSIONS=jdbcconfig-plugin,jdbcstore-plugin,hz-cluster-plugin #,datadir-catalog-loader-plugin
+      - COMMUNITY_EXTENSIONS=jdbcstore-plugin,hz-cluster-plugin #,datadir-catalog-loader-plugin
     depends_on:
         db:
           condition: service_healthy
