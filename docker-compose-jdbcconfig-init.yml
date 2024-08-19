@@ -8,14 +8,14 @@ x-common-geoserver:
       test: "curl --fail --silent --write-out 'HTTP CODE : %{http_code}\n' --output /dev/null -u admin:'geoserver' http://localhost:8080/geoserver/rest/about/version.xml"
       interval: 1m30s
       timeout: 10s
-      retries: 10
+      retries: 30
   volumes:
     - settings:/settings
     - geoserver-cluster-data:/opt/geoserver/data_dir
     - geoserver-cluster-gwc-data:/opt/geoserver/gwc
     # - ./geoserver/logging.xml:/opt/geoserver/data_dir/logging.xml:ro
-    - ./geoserver/jdbcconfig-init.properties:/opt/geoserver/data_dir/jdbcconfig/jdbcconfig.properties:ro
-    - ./geoserver/jdbcstore-init.properties:/opt/geoserver/data_dir/jdbcstore/jdbcstore.properties:ro
+    # - ./geoserver/jdbcconfig-init.properties:/opt/geoserver/data_dir/jdbcconfig/jdbcconfig.properties:ro
+    # - ./geoserver/jdbcstore-init.properties:/opt/geoserver/data_dir/jdbcstore/jdbcstore.properties:ro
     - ./geoserver/hz_cluster.properties:/opt/geoserver/data_dir/cluster/cluster.properties:ro
     - ./geoserver/controlflow.properties:/opt/geoserver/data_dir/controlflow.properties:rw
     - ./geoserver/hazelcast.xml:/opt/geoserver/data_dir/cluster/hazelcast.xml:ro
