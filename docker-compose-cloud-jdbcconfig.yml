@@ -24,8 +24,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2.0'
-          memory: 1G
+          memory: 2G
 
   database:
     # be sure geoserver.backend.jdbcconfig.initdb is set to true in application.yml at lease for the first app run
@@ -41,8 +40,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2.0'
-          memory: 1G
+          memory: 2G
 
   # Eureka service discovery. This is a Discovery First Bootstrap configuration.
   # The discovery service is the only fixed entry point.
@@ -59,7 +57,6 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2.0'
           memory: 512M
 
   # Spring Cloud Config service, provides centralized configuration to all
@@ -95,7 +92,6 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2.0'
           memory: 512M
 
   # Application facade, provides a single entry point routing to all
@@ -115,8 +111,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '4.0'
-          memory: 1G
+          memory: 2G
 
   # WFS microservice, port dynamically allocated to allow scaling (e.g docker compose scale wfs=5)
   wfs:
@@ -135,8 +130,7 @@ services:
       replicas: 1
       resources:
         limits:
-          cpus: '2.0'
-          memory: 1G
+          memory: 2G
 
   # WMS microservice, port dynamically allocated to allow scaling (e.g docker compose scale wms=5)
   wms:
@@ -157,8 +151,7 @@ services:
       replicas: 3
       resources:
         limits:
-          cpus: '2.0'
-          memory: 1G
+          memory: 2G
 
   # WCS microservice, port dynamically allocated to allow scaling (e.g docker compose scale wcs=5)
   wcs:
@@ -177,8 +170,7 @@ services:
       replicas: 1
       resources:
         limits:
-          cpus: '2.0'
-          memory: 1G
+          memory: 2G
 
   # REST config microservice, port dynamically allocated to allow scaling (e.g docker compose scale rest=5)
   rest:
@@ -198,7 +190,7 @@ services:
       resources:
         limits:
           cpus: '1.5'
-          memory: 1G
+          memory: 2G
 
   # WEB UI microservice
   webui:
@@ -217,8 +209,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2.0'
-          memory: 1G
+          memory: 2G
   gwc:
     image: geoservercloud/geoserver-cloud-gwc:1.8.8
     user: 1000:1000 # set the userid:groupid the container runs as
@@ -237,5 +228,4 @@ services:
       replicas: 2
       resources:
         limits:
-          cpus: '2.0'
-          memory: 1G
+          memory: 2G

@@ -22,7 +22,6 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '4.0'
           memory: 4G
     
   acl:
@@ -51,7 +50,6 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '4.0'
           memory: 2G
     ports:
        - 9092:8080
@@ -71,7 +69,6 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '4.0'
           memory: 2G
 
   # Eureka service discovery. This is a Discovery First Bootstrap configuration.
@@ -88,7 +85,6 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2.0'
           memory: 512M
 
   # Spring Cloud Config service, provides centralized configuration to all
@@ -118,7 +114,6 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2.0'
           memory: 512M
     
   # Application facade, provides a single entry point routing to all
@@ -136,8 +131,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '4.0'
-          memory: 1G
+          memory: 2G
 
   # WFS microservice, port dynamically allocated to allow scaling (e.g docker compose scale wfs=5)
   wfs:
@@ -288,5 +282,4 @@ services:
       replicas: 0
       resources:
         limits:
-          cpus: '2.0'
-          memory: 1G
+          memory: 2G
